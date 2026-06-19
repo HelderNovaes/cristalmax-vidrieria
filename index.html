@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="es-BO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CristalMax — Vidriería &amp; Cristalería | Vidrios Blindex en Santa Cruz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800&family=Archivo:wght@400;500;600;700&display=swap');
+
+        :root {
+            --azul-profundo: #0a2540;
+            --azul-vidrio: #13507f;
+            --azul-claro: #3a86c8;
+            --verde-cm: #8bc63f;
+            --verde-cm-deep: #6aa62a;
+            --amarillo: #f4c531;
+            --hielo: #eef5fa;
+            --blanco: #ffffff;
+            --tinta: #0a1d2e;
+            --vidrio-borde: rgba(255, 255, 255, 0.18);
+            --font-display: 'Archivo Expanded', sans-serif;
+            --font-body: 'Archivo', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--hielo);
+            color: var(--tinta);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--amarillo);
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ============ NAV ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 37, 64, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--vidrio-borde);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--blanco);
+            letter-spacing: 0.5px;
+        }
+        .logo .cm {
+            color: var(--verde-cm);
+            font-size: 1.6rem;
+        }
+        .logo small {
+            display: block;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.56rem;
+            letter-spacing: 2.5px;
+            color: var(--amarillo);
+            text-transform: uppercase;
+        }
+        .navlinks {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .navlinks a {
+            color: var(--hielo);
+            font-size: 0.92rem;
+            font-weight: 600;
+            position: relative;
+            padding: 4px 0;
+            opacity: 0.88;
+        }
+        .navlinks a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--verde-cm);
+            transform: scaleX(0);
+            transition: transform .25s ease;
+        }
+        .navlinks a:hover {
+            opacity: 1;
+        }
+        .navlinks a:hover::after {
+            transform: scaleX(1);
+        }
+        .nav-cta {
+            background: var(--verde-cm);
+            color: var(--azul-profundo) !important;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-weight: 700 !important;
+            font-size: 0.85rem !important;
+        }
+        .nav-cta::after {
+            display: none;
+        }
+        .nav-cta:hover {
+            background: var(--amarillo);
+        }
+        .burger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .burger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--blanco);
+            margin: 5px 0;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(160deg, var(--azul-profundo) 0%, var(--azul-vidrio) 55%, var(--azul-claro) 100%);
+            overflow: hidden;
+            padding-top: 90px;
+        }
+        .hero-panels {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            perspective: 1200px;
+        }
+        .panel {
+            position: absolute;
+            top: 8%;
+            bottom: 8%;
+            width: 16%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.08));
+            border-left: 1px solid rgba(255, 255, 255, 0.35);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            transform-style: preserve-3d;
+            transition: transform .4s cubic-bezier(.2, .7, .3, 1);
+            box-shadow: inset 0 0 60px rgba(255, 255, 255, 0.05);
+        }
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 35%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent);
+        }
+        .panel:nth-child(1) {
+            left: 6%;
+            transform: rotateY(8deg) translateZ(0px);
+        }
+        .panel:nth-child(2) {
+            left: 24%;
+            transform: rotateY(4deg) translateZ(20px);
+        }
+        .panel:nth-child(3) {
+            left: 42%;
+            transform: rotateY(0deg) translateZ(40px);
+        }
+        .panel:nth-child(4) {
+            left: 60%;
+            transform: rotateY(-4deg) translateZ(20px);
+        }
+        .panel:nth-child(5) {
+            left: 78%;
+            transform: rotateY(-8deg) translateZ(0px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--amarillo);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            border: 1px solid rgba(244, 197, 49, 0.4);
+            padding: 7px 14px;
+            border-radius: 30px;
+            background: rgba(244, 197, 49, 0.07);
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            color: var(--blanco);
+            font-size: clamp(2.4rem, 6vw, 4.6rem);
+            line-height: 1.04;
+            letter-spacing: -1px;
+            max-width: 780px;
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25);
+        }
+        .hero h1 span {
+            color: var(--verde-cm);
+        }
+        .hero p.lead {
+            margin-top: 24px;
+            max-width: 540px;
+            color: rgba(238, 245, 250, 0.88);
+            font-size: 1.12rem;
+            line-height: 1.65;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 38px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 28px;
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .btn-primary {
+            background: var(--verde-cm);
+            color: var(--azul-profundo);
+            box-shadow: 0 10px 30px -8px rgba(139, 198, 63, 0.6);
+        }
+        .btn-primary:hover {
+            background: var(--amarillo);
+            transform: translateY(-2px);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--blanco);
+            border: 1.5px solid rgba(255, 255, 255, 0.45);
+        }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 64px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            padding-top: 28px;
+            max-width: 640px;
+        }
+        .stat strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            color: var(--blanco);
+            font-weight: 800;
+        }
+        .stat span {
+            color: rgba(238, 245, 250, 0.7);
+            font-size: 0.82rem;
+        }
+
+        /* ============ SECTION COMMON ============ */
+        section {
+            padding: 110px 0;
+        }
+        .section-head {
+            max-width: 640px;
+            margin-bottom: 64px;
+        }
+        .eyebrow {
+            display: block;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--verde-cm-deep);
+            margin-bottom: 14px;
+        }
+        .section-head h2 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+            color: var(--azul-profundo);
+            line-height: 1.12;
+            letter-spacing: -0.5px;
+        }
+        .section-head p {
+            margin-top: 18px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #3d4f5e;
+        }
+
+        /* ============ SERVICES ============ */
+        .servicios {
+            background: var(--blanco);
+        }
+        .grid-servicios {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #dfe7ed;
+            border: 1px solid #dfe7ed;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .servicio {
+            background: var(--blanco);
+            padding: 40px 32px;
+            position: relative;
+            transition: background .35s ease, transform .3s ease;
+            cursor: default;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .servicio::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity .4s ease;
+            filter: brightness(0.35) saturate(1.3);
+        }
+        .servicio:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1496307653780-42ee777d4833?auto=format&fit=crop&w=800&q=80');
+        }
+        .servicio:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1506377290352-315fbd027e8e?auto=format&fit=crop&w=800&q=80');
+        }
+        .servicio:nth-child(3)::before {
+            background-image: url('https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80');
+        }
+        .servicio:nth-child(4)::before {
+            background-image: url('https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=800&q=80');
+        }
+        .servicio:nth-child(5)::before {
+            background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80');
+        }
+        .servicio:nth-child(6)::before {
+            background-image: url('https://images.unsplash.com/photo-1520366498724-709889c0c685?auto=format&fit=crop&w=800&q=80');
+        }
+        .servicio:hover::before {
+            opacity: 1;
+        }
+        .servicio:hover {
+            background: transparent;
+            transform: translateY(-4px);
+            z-index: 2;
+        }
+        .servicio:hover .num,
+        .servicio:hover h3,
+        .servicio:hover p {
+            color: #fff;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        }
+        .servicio:hover .num {
+            color: var(--amarillo);
+        }
+        .servicio:hover .icon svg * {
+            stroke: #fff;
+        }
+        .servicio .num {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #9bb0bf;
+            letter-spacing: 1px;
+            transition: color .35s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .servicio h3 {
+            font-family: var(--font-display);
+            font-size: 1.28rem;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin: 18px 0 12px;
+            letter-spacing: -0.2px;
+            transition: color .35s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .servicio p {
+            color: #52646f;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            transition: color .35s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .servicio .icon {
+            width: 46px;
+            height: 46px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .servicio .icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        .servicio .icon svg * {
+            transition: stroke .35s ease;
+        }
+
+        /* ============ SLIDER GALERIA ============ */
+        .galeria {
+            background: #f0f4f8;
+            padding-bottom: 130px;
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(10, 37, 64, 0.25);
+            aspect-ratio: 16/9;
+            background: #0a1d2e;
+        }
+        .slider-track {
+            display: flex;
+            height: 100%;
+            transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+        }
+        .slide {
+            flex: 0 0 100%;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 36px 28px;
+            background: linear-gradient(0deg, rgba(10, 37, 64, 0.92) 0%, rgba(10, 37, 64, 0.55) 60%, transparent 100%);
+            color: #fff;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.3px;
+            z-index: 3;
+        }
+        .slide-caption small {
+            display: block;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.82rem;
+            color: var(--verde-cm);
+            margin-top: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--azul-profundo);
+            transition: background .25s ease, box-shadow .25s ease, transform .2s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+        .slider-btn:hover {
+            background: #fff;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50%) scale(1.06);
+        }
+        .slider-btn.prev {
+            left: 18px;
+        }
+        .slider-btn.next {
+            right: 18px;
+        }
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+        .slider-dots button {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: 2px solid var(--azul-vidrio);
+            background: transparent;
+            cursor: pointer;
+            transition: background .3s ease, border-color .3s ease, transform .25s ease;
+            padding: 0;
+        }
+        .slider-dots button.active {
+            background: var(--verde-cm);
+            border-color: var(--verde-cm);
+            transform: scale(1.25);
+            box-shadow: 0 0 14px rgba(139, 198, 63, 0.45);
+        }
+        .slider-dots button:hover {
+            border-color: var(--verde-cm);
+            transform: scale(1.1);
+        }
+
+        /* ============ PROCESO / DESTAQUE FAIXA ============ */
+        .faixa {
+            background: linear-gradient(100deg, var(--verde-cm-deep), var(--verde-cm));
+            padding: 54px 0;
+        }
+        .faixa .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .faixa h3 {
+            font-family: var(--font-display);
+            color: var(--azul-profundo);
+            font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+            font-weight: 800;
+            max-width: 560px;
+            line-height: 1.2;
+        }
+        .faixa .btn-primary {
+            background: var(--azul-profundo);
+            color: var(--blanco);
+            box-shadow: none;
+        }
+        .faixa .btn-primary:hover {
+            background: var(--blanco);
+            color: var(--azul-profundo);
+        }
+
+        /* ============ PROCESO TIMELINE ============ */
+        .proceso {
+            background: var(--blanco);
+        }
+        .pasos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+        .pasos::before {
+            content: '';
+            position: absolute;
+            top: 23px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #dfe7ed;
+        }
+        .paso {
+            position: relative;
+            padding-right: 24px;
+        }
+        .paso .bola {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--azul-profundo);
+            color: var(--verde-cm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 22px;
+        }
+        .paso h4 {
+            font-family: var(--font-display);
+            font-size: 1.08rem;
+            color: var(--azul-profundo);
+            margin-bottom: 8px;
+        }
+        .paso p {
+            color: #52646f;
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        /* ============ CONTATO ============ */
+        .contato {
+            background: var(--azul-profundo);
+            position: relative;
+            overflow: hidden;
+        }
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px;
+            align-items: start;
+        }
+        .contato .section-head h2 {
+            color: var(--blanco);
+        }
+        .contato .section-head p {
+            color: rgba(238, 245, 250, 0.75);
+        }
+        .contato .eyebrow {
+            color: var(--verde-cm);
+        }
+
+        .contato-info {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            margin-top: 36px;
+        }
+        .info-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+        .info-item .ic {
+            width: 44px;
+            height: 44px;
+            flex: none;
+            border-radius: 8px;
+            background: rgba(139, 198, 63, 0.14);
+            border: 1px solid rgba(139, 198, 63, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-item .ic svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--verde-cm);
+        }
+        .info-item h4 {
+            color: var(--blanco);
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .info-item p,
+        .info-item a {
+            color: rgba(238, 245, 250, 0.75);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+        .info-item a:hover {
+            color: var(--amarillo);
+        }
+
+        .card-form {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 6px;
+            padding: 36px;
+            backdrop-filter: blur(10px);
+        }
+        .card-form h3 {
+            font-family: var(--font-display);
+            color: var(--blanco);
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+        .card-form>p {
+            color: rgba(238, 245, 250, 0.65);
+            font-size: 0.88rem;
+            margin-bottom: 26px;
+        }
+        .field {
+            margin-bottom: 18px;
+        }
+        .field label {
+            display: block;
+            color: rgba(238, 245, 250, 0.85);
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: var(--blanco);
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+        }
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: rgba(238, 245, 250, 0.4);
+        }
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--verde-cm);
+            background: rgba(255, 255, 255, 0.09);
+        }
+        .field textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+        .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .card-form .btn-primary {
+            width: 100%;
+            justify-content: center;
+            margin-top: 6px;
+        }
+        .form-note {
+            font-size: 0.78rem;
+            color: rgba(238, 245, 250, 0.5);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: #071a2c;
+            padding: 36px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        footer p {
+            color: rgba(238, 245, 250, 0.5);
+            font-size: 0.84rem;
+        }
+        footer .flogo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            color: var(--blanco);
+            font-size: 1.05rem;
+        }
+        footer .flogo span {
+            color: var(--verde-cm);
+        }
+
+        /* ============ WHATSAPP FLOAT ============ */
+        .wa-float {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 90;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: transform .2s ease;
+        }
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+        .wa-float svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 980px) {
+            .navlinks {
+                display: none;
+            }
+            .burger {
+                display: block;
+            }
+            .grid-servicios {
+                grid-template-columns: 1fr 1fr;
+            }
+            .pasos {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 36px;
+            }
+            .pasos::before {
+                display: none;
+            }
+            .contato-grid {
+                grid-template-columns: 1fr;
+            }
+            .slider-container {
+                aspect-ratio: 4/3;
+            }
+            .slide-caption {
+                font-size: 1.05rem;
+                padding: 28px 22px 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .grid-servicios {
+                grid-template-columns: 1fr;
+            }
+            .pasos {
+                grid-template-columns: 1fr;
+            }
+            .row2 {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .faixa .wrap {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .slider-container {
+                aspect-ratio: 1/1;
+            }
+            .slide-caption {
+                font-size: 0.95rem;
+                padding: 20px 16px 16px;
+            }
+            .slider-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+            .slider-btn.prev {
+                left: 8px;
+            }
+            .slider-btn.next {
+                right: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#top" class="logo">
+                <span class="cm">CM</span>
+                <span>CristalMax<small>Tecnología en Vidrio Templado</small></span>
+            </a>
+            <ul class="navlinks">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Trabajos</a></li>
+                <li><a href="#proceso">Cómo trabajamos</a></li>
+                <li><a href="#contacto" class="nav-cta">Pedir cotización</a></li>
+            </ul>
+            <button class="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+        </nav>
+    </header>
+
+    <section class="hero" id="top">
+        <div class="hero-panels" id="heroPanels">
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-eyebrow">Vidriería CristalMax · Zona Plan 3000</span>
+            <h1>El vidrio que <span>protege, ilumina</span> y viste tu espacio.</h1>
+            <p class="lead">Fabricamos e instalamos vidrios templados Blindex a medida: ventanas, puertas, box de baño, mesas, fachadas y mallas de aluminio. Presupuesto sin compromiso, en el día.</p>
+            <div class="hero-actions">
+                <a href="#contacto" class="btn btn-primary">Solicitar presupuesto gratis</a>
+                <a href="#servicios" class="btn btn-ghost">Ver todos los servicios</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat"><strong>100%</strong><span>Vidrio templado de seguridad</span></div>
+                <div class="stat"><strong>0 Bs</strong><span>Costo del presupuesto</span></div>
+                <div class="stat"><strong>A medida</strong><span>Cada pieza, hecha para tu espacio</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="servicios" id="servicios">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Lo que fabricamos</span>
+                <h2>Un vidrio para cada parte de tu casa o negocio</h2>
+                <p>Trabajamos con vidrio templado Blindex y estructuras de aluminio. Esto es lo que más nos piden — y lo que mejor sabemos hacer.</p>
+            </div>
+
+            <div class="grid-servicios">
+                <div class="servicio">
+                    <div class="icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="2" stroke="#8bc63f" stroke-width="2.5"/><line x1="24" y1="6" x2="24" y2="42" stroke="#8bc63f" stroke-width="2"/><line x1="6" y1="24" x2="42" y2="24" stroke="#8bc63f" stroke-width="2"/></svg></div>
+                    <div class="num">01</div>
+                    <h3>Ventanas blindex</h3>
+                    <p>Ventanas de vidrio templado con perfiles de aluminio, corredizas o fijas. Más luz natural, más seguridad y mejor aislamiento que el vidrio común.</p>
+                </div>
+
+                <div class="servicio">
+                    <div class="icon"><svg viewBox="0 0 48 48" fill="none"><rect x="10" y="5" width="28" height="38" rx="2" stroke="#8bc63f" stroke-width="2.5"/><circle cx="32" cy="24" r="1.6" fill="#8bc63f"/></svg></div>
+                    <div class="num">02</div>
+                    <h3>Puertas de vidrio</h3>
+                    <p>Puertas blindex para entradas, oficinas y locales comerciales. Con o sin marco de aluminio, con herrajes y cerraduras a tu elección.</p>
+                </div>
+
+                <div class="servicio">
+                    <div class="icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 36 L40 36 M12 36 L12 16 L36 16 L36 36" stroke="#8bc63f" stroke-width="2.5" stroke-linecap="round"/><line x1="12" y1="22" x2="36" y2="22" stroke="#8bc63f" stroke-width="2"/></svg></div>
+                    <div class="num">03</div>
+                    <h3>Mesas de vidrio</h3>
+                    <p>Tapas y mesas de vidrio templado para comedor, centro o exteriores, con bordes pulidos y el grosor ideal para cada uso.</p>
+                </div>
+
+                <div class="servicio">
+                    <div class="icon"><svg viewBox="0 0 48 48" fill="none"><path d="M10 14 H38 L34 38 H14 Z" stroke="#8bc63f" stroke-width="2.5" stroke-linejoin="round"/><line x1="10" y1="22" x2="38" y2="22" stroke="#8bc63f" stroke-width="1.6"/></svg></div>
+                    <div class="num">04</div>
+                    <h3>Box y divisiones de baño</h3>
+                    <p>Boxes de ducha en vidrio templado, fijos o con corredera, sellados para que no pase una gota de agua de más.</p>
+                </div>
+
+                <div class="servicio">
+                    <div class="icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#8bc63f" stroke-width="2.5"/><path d="M10 38 L38 38 M14 10 L14 38 M34 10 L34 38" stroke="#8bc63f" stroke-width="1.6"/></svg></div>
+                    <div class="num">05</div>
+                    <h3>Fachadas y barandas</h3>
+                    <p>Cerramientos de vidrio para fachadas de locales, balcones y barandas de escalera. Estructura en aluminio, terminación a medida.</p>
+                </div>
+
+                <div class="servicio">
+                    <div class="icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 10 H40 V34 H8 Z M8 10 L24 24 L40 10" stroke="#8bc63f" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
+                    <div class="num">06</div>
+                    <h3>Peceras y mallas de aluminio</h3>
+                    <p>Peceras de vidrio armadas a tu medida y mallas / mosquiteros de aluminio para puertas y ventanas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="faixa">
+        <div class="wrap">
+            <h3>¿Tienes una medida exacta o solo una idea? Igual te armamos el presupuesto.</h3>
+            <a href="#contacto" class="btn btn-primary">Hablar por WhatsApp</a>
+        </div>
+    </div>
+
+    <section class="galeria" id="galeria">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Trabajos realizados</span>
+                <h2>Vidrio templado en obra, no solo en catálogo</h2>
+                <p>Una muestra de los rubros donde más trabajamos: fachadas comerciales, ventanales, box y piezas a medida. Desliza para ver más.</p>
+            </div>
+
+            <div class="slider-container" id="sliderContainer">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Fachada comercial en vidrio espejado">
+                        <div class="slide-caption">Fachada comercial en vidrio<small>Proyecto · Santa Cruz</small></div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1200&q=80" alt="Ventanal moderno con estructura de aluminio">
+                        <div class="slide-caption">Ventanal de aluminio y blindex<small>Instalación residencial</small></div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="Box de baño moderno en vidrio templado">
+                        <div class="slide-caption">Box de baño en vidrio templado<small>Acabado sellado profesional</small></div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1200&q=80" alt="Interior con divisiones de vidrio">
+                        <div class="slide-caption">Divisiones de vidrio para interior<small>Oficinas y espacios comerciales</small></div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Baranda de escalera en vidrio templado">
+                        <div class="slide-caption">Baranda de escalera en blindex<small>Seguridad y diseño</small></div>
+                    </div>
+                </div>
+                <button class="slider-btn prev" id="btnPrev" aria-label="Anterior">&#10094;</button>
+                <button class="slider-btn next" id="btnNext" aria-label="Siguiente">&#10095;</button>
+            </div>
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <section class="proceso" id="proceso">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Cómo trabajamos</span>
+                <h2>De la medida a la instalación, en cuatro pasos</h2>
+            </div>
+            <div class="pasos">
+                <div class="paso">
+                    <div class="bola">1</div>
+                    <h4>Nos cuentas qué necesitas</h4>
+                    <p>Por WhatsApp o en el local: nos dices qué pieza necesitas y dónde va.</p>
+                </div>
+                <div class="paso">
+                    <div class="bola">2</div>
+                    <h4>Tomamos la medida</h4>
+                    <p>Vamos al lugar o recibimos tus medidas para calcular el vidrio exacto.</p>
+                </div>
+                <div class="paso">
+                    <div class="bola">3</div>
+                    <h4>Presupuesto sin compromiso</h4>
+                    <p>Te enviamos el costo detallado. Sin sorpresas, sin letra chica.</p>
+                </div>
+                <div class="paso">
+                    <div class="bola">4</div>
+                    <h4>Fabricamos e instalamos</h4>
+                    <p>Templamos el vidrio a medida y lo instalamos con acabado prolijo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contato" id="contacto">
+        <div class="wrap">
+            <div class="contato-grid">
+                <div>
+                    <span class="eyebrow">Contacto</span>
+                    <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(1.8rem,3.6vw,2.5rem); line-height:1.15;">Pide tu presupuesto sin compromiso</h2>
+                    <p style="margin-top:16px; color:rgba(238,245,250,0.75); font-size:1.02rem; line-height:1.6;">Respondemos rápido por WhatsApp. Cuéntanos qué necesitas y te decimos el costo aproximado el mismo día.</p>
+
+                    <div class="contato-info">
+                        <div class="info-item">
+                            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3l2 5-2.5 1.5a11 11 0 005 5L14 12l5 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg></div>
+                            <div>
+                                <h4>Llámanos o escríbenos</h4>
+                                <p><a href="tel:+59161369685">613 69685</a> &nbsp;·&nbsp; <a href="tel:+59172947146">729 47146</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>Zona Plan 3000, frente al Mercado Las Orquídeas</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                            <div>
+                                <h4>Horario de atención</h4>
+                                <p>Lunes a sábado, 8:00 a 18:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-form">
+                    <h3>Cuéntanos tu proyecto</h3>
+                    <p>Te respondemos directo por WhatsApp con el presupuesto.</p>
+                    <form id="formCotizacion">
+                        <div class="row2">
+                            <div class="field">
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" type="text" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="field">
+                                <label for="telefono">Teléfono</label>
+                                <input id="telefono" type="tel" placeholder="Tu número" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="servicio">¿Qué necesitas?</label>
+                            <select id="servicio">
+                                <option>Ventana blindex</option>
+                                <option>Puerta de vidrio</option>
+                                <option>Mesa de vidrio</option>
+                                <option>Box de baño</option>
+                                <option>Fachada / baranda</option>
+                                <option>Pecera a medida</option>
+                                <option>Malla de aluminio</option>
+                                <option>Otro / no estoy seguro</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="detalle">Cuéntanos un poco más (medidas, fotos, dirección)</label>
+                            <textarea id="detalle" placeholder="Ej: necesito una ventana de 1.20 x 1.50 m para mi cocina..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar por WhatsApp</button>
+                    </form>
+                    <p class="form-note">Al enviar, se abrirá WhatsApp con tu mensaje listo para confirmar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="flogo">Cristal<span>Max</span> — Vidriería</div>
+            <p>© 2026 Vidriería CristalMax · Yeison Canaza, propietario · Zona Plan 3000, Santa Cruz</p>
+        </div>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/59161369685?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+        <svg viewBox="0 0 32 32"><path d="M16 0C7.16 0 0 7.16 0 16c0 2.82.74 5.46 2.03 7.76L0 32l8.46-2.22A15.9 15.9 0 0016 32c8.84 0 16-7.16 16-16S24.84 0 16 0zm0 29.27c-2.53 0-4.9-.7-6.93-1.92l-.5-.3-5.04 1.33 1.35-4.91-.32-.5A13.2 13.2 0 012.73 16C2.73 8.69 8.69 2.73 16 2.73S29.27 8.69 29.27 16 23.31 29.27 16 29.27zm7.27-9.94c-.4-.2-2.36-1.16-2.73-1.3-.36-.13-.63-.2-.9.2-.26.4-1.02 1.3-1.25 1.56-.23.27-.46.3-.86.1-.4-.2-1.66-.61-3.16-1.95-1.17-1.04-1.96-2.33-2.19-2.73-.23-.4-.02-.6.18-.8.2-.2.4-.5.6-.76.2-.27.27-.46.4-.76.13-.3.06-.56-.06-.76-.13-.2-.5-1.23-.96-2.4-.45-1.13-.92-.97-1.26-.99-.33-.02-.7-.02-1.07-.02-.36 0-.96.13-1.46.66-.5.53-1.93 1.9-1.93 4.6 0 2.73 1.96 5.36 2.23 5.73.27.36 3.13 4.8 7.6 6.53 4.46 1.73 4.46 1.16 5.26 1.1.8-.07 2.6-1.07 2.96-2.1.37-1.04.37-1.93.27-2.1-.1-.2-.36-.3-.76-.5z"/></svg>
+    </a>
+
+    <script>
+        // Parallax sutil das peças de vidro no hero (segue o mouse)
+        const panels = document.querySelectorAll('.panel');
+        const heroPanels = document.getElementById('heroPanels');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!reduceMotion && heroPanels) {
+            heroPanels.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 2;
+                panels.forEach((panel, i) => {
+                    const depth = (i - 2) * 6;
+                    panel.style.transform =
+                        `rotateY(${depth - x * 5}deg) translateZ(${Math.abs(depth) * 3}px) translateX(${x * (i-2) * 4}px)`;
+                });
+            });
+        }
+
+        // Menu mobile simples
+        const burger = document.querySelector('.burger');
+        const navlinks = document.querySelector('.navlinks');
+        burger.addEventListener('click', () => {
+            const isOpen = navlinks.style.display === 'flex';
+            navlinks.style.display = isOpen ? 'none' : 'flex';
+            navlinks.style.flexDirection = 'column';
+            navlinks.style.position = 'absolute';
+            navlinks.style.top = '100%';
+            navlinks.style.left = '0';
+            navlinks.style.right = '0';
+            navlinks.style.background = 'rgba(10,37,64,0.97)';
+            navlinks.style.padding = '24px';
+            navlinks.style.gap = '20px';
+        });
+
+        // ============ SLIDER / CARROSSEL ============
+        const sliderTrack = document.getElementById('sliderTrack');
+        const slides = document.querySelectorAll('.slide');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const dotsContainer = document.getElementById('sliderDots');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        // Criar dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+        const dots = dotsContainer.querySelectorAll('button');
+
+        function updateSlider() {
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextSlide, 4200);
+        }
+
+        btnNext.addEventListener('click', nextSlide);
+        btnPrev.addEventListener('click', prevSlide);
+
+        // Touch / swipe para mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const sliderContainer = document.getElementById('sliderContainer');
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        sliderContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+        });
+
+        // Iniciar auto-slide
+        autoSlideInterval = setInterval(nextSlide, 4200);
+
+        // Formulário -> WhatsApp
+        document.getElementById('formCotizacion').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const servicio = document.getElementById('servicio').value;
+            const detalle = document.getElementById('detalle').value;
+            const mensaje =
+                `Hola, soy ${nombre} (tel: ${telefono}).%0AQuisiera un presupuesto para: ${servicio}.%0ADetalle: ${detalle || 'sin detalles adicionales'}`;
+            window.open(`https://wa.me/59161369685?text=${mensaje}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>
